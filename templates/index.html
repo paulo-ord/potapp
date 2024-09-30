@@ -4,35 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumen de Operaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #2980b9;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        h2 {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .total-section {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .result-container {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Ingresar Texto de Operaciones</h1>
+    <div class="container">
+        <h1>Resumen de Operaciones</h1>
 
-    <form method="POST">
-        <textarea name="texto" rows="20" cols="100" placeholder="Pegue el texto aquí..." required></textarea><br>
-        <button type="submit">Calcular Resumen</button>
-    </form>
+        <form method="POST">
+            <textarea name="texto" rows="10" placeholder="Pegue el texto aquí..." required></textarea>
+            <button type="submit">Calcular Resumen</button>
+        </form>
 
-    {% if resumen is not none %}
-        <h2>Operaciones Especiales de Antiterrorismo y Contraterrorismo (Literal A)</h2>
-        <p><strong>Total Operaciones:</strong> {{ resumen.A[0] }}</p>
-        <p><strong>Total Oficiales:</strong> {{ resumen.A[1] }}</p>
-        <p><strong>Total Aerotécnicos:</strong> {{ resumen.A[2] }}</p>
+        <!-- Verificar si resumen está definido para evitar errores -->
+        {% if resumen is defined %}
+        <div class="result-container">
+            <h2>Operaciones Especiales de Antiterrorismo y Contraterrorismo (Literal A)</h2>
+            <p><strong>Total Operaciones:</strong> {{ resumen['A'][0] }}</p>
+            <p><strong>Total Oficiales:</strong> {{ resumen['A'][1] }}</p>
+            <p><strong>Total Aerotécnicos:</strong> {{ resumen['A'][2] }}</p>
 
-        <h2>Operaciones de Competencia Legal de Fuerzas Armadas (Literal B)</h2>
-        <p><strong>Total Operaciones:</strong> {{ resumen.B[0] }}</p>
-        <p><strong>Total Oficiales:</strong> {{ resumen.B[1] }}</p>
-        <p><strong>Total Aerotécnicos:</strong> {{ resumen.B[2] }}</p>
+            <h2>Operaciones de Competencia Legal de Fuerzas Armadas (Literal B)</h2>
+            <p><strong>Total Operaciones:</strong> {{ resumen['B'][0] }}</p>
+            <p><strong>Total Oficiales:</strong> {{ resumen['B'][1] }}</p>
+            <p><strong>Total Aerotécnicos:</strong> {{ resumen['B'][2] }}</p>
 
-        <h2>Operaciones en Apoyo a la Policía Nacional en el Control de los CRS/CPL (Literal C)</h2>
-        <p><strong>Total Operaciones:</strong> {{ resumen.C[0] }}</p>
-        <p><strong>Total Oficiales:</strong> {{ resumen.C[1] }}</p>
-        <p><strong>Total Aerotécnicos:</strong> {{ resumen.C[2] }}</p>
+            <h2>Operaciones en Apoyo a la Policía Nacional en el Control de los CRS/CPL (Literal C)</h2>
+            <p><strong>Total Operaciones:</strong> {{ resumen['C'][0] }}</p>
+            <p><strong>Total Oficiales:</strong> {{ resumen['C'][1] }}</p>
+            <p><strong>Total Aerotécnicos:</strong> {{ resumen['C'][2] }}</p>
 
-        <h2>Total de las Operaciones</h2>
-        <p><strong>Total Operaciones:</strong> {{ resumen.total[0] }}</p>
-        <p><strong>Total Oficiales:</strong> {{ resumen.total[1] }}</p>
-        <p><strong>Total Aerotécnicos:</strong> {{ resumen.total[2] }}</p>
-    {% endif %}
+            <h2>Operaciones Patrullajes Sistema Hidrocarburífero Nacional (Literal D)</h2>
+            <p><strong>Total Operaciones:</strong> {{ resumen['D'][0] }}</p>
+            <p><strong>Total Oficiales:</strong> {{ resumen['D'][1] }}</p>
+            <p><strong>Total Aerotécnicos:</strong> {{ resumen['D'][2] }}</p>
+
+            <div class="total-section">
+                <h2>Total de las Operaciones</h2>
+                <p><strong>Total Operaciones:</strong> {{ resumen['total'][0] }}</p>
+                <p><strong>Total Oficiales:</strong> {{ resumen['total'][1] }}</p>
+                <p><strong>Total Aerotécnicos:</strong> {{ resumen['total'][2] }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
