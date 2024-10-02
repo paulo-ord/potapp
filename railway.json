@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
@@ -10,3 +11,17 @@
     "command": "python app.py"
   }
 }
+=======
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "Nixpacks",
+    "nixpacks": {
+      "plan": "python"
+    }
+  },
+  "deploy": {
+    "command": "python app.py"
+  }
+}
+>>>>>>> f328c571b074b016a6477765d5a063cca8225eb1
